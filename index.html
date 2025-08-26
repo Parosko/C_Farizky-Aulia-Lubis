@@ -356,24 +356,27 @@ html {
 #pendidikan {
   scroll-margin-top: 120px;
 }
+.contact-section {
+  text-align: center; /* biar semua isi kontak rata tengah */
+  margin-top: 35px;
+}
+
 .contact-btn {
-  margin-top: 1rem;
-  width: 100%;
+  margin-top: 15px;  /* jarak tombol dari teks kontak */
 }
 
 .contact-btn a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #667eea, #9a6aff);
-  color: white;
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(90deg, #6a8dff, #9a6aff);
+  color: #fff;
+  border-radius: 8px;
   text-decoration: none;
-  padding: 0.6rem 1rem;
-  border-radius: 12px;
-  font-weight: 500;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  transition: transform 0.2s ease, background 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .contact-btn a img {
   width: 20px;
@@ -643,3 +646,4 @@ nextBtn.addEventListener('click', () => showSlide(index + 1));
   </script>
 </body>
 </html>
+
