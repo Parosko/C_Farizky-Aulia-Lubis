@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tentang Saya</title>
+  <title>Tentang saya</title> 
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
    * {
   margin: 0;
@@ -327,7 +329,7 @@ h2::after {
   text-align: justify;
 }
 
-    /* Link styling agar lebih mudah dibaca */
+/* Link styling agar lebih mudah dibaca */
 a {
   color: #6a8dff; 
   font-weight: 600;
@@ -338,30 +340,105 @@ a {
 a:hover {
   color: #9a6aff;
   text-decoration: underline;
+
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* atur sesuai tinggi header/sidebar */
+}
+
+@media(max-width: 768px){
+  section {
+    scroll-margin-top: 100px;
+  }
+}
+
+#pendidikan {
+  scroll-margin-top: 120px;
+}
+.contact-btn {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.contact-btn a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #667eea, #9a6aff);
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.contact-btn a img {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-btn a:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #8698f5, #b78cff);
+}
+
+.card, .bubble {
+  padding: 2rem;       /* lebih lega */
+}
+
+.bubble {
+  min-height: 200px;   /* biar lebih tinggi */
+}
+
+.bubble .text p, 
+.card p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.sidebar {
+  overflow-y: auto;   /* aktifkan scroll khusus sidebar */
+  max-height: 100vh;  /* biar tidak melebihi tinggi layar */
 }
 
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="profile">
-      <img src="Profile.jpg" alt="Foto Profil">
-      <h1>Farizky Aulia Lubis</h1>
-      <p>Mahasiswa | Universitas Negeri Medan</p>
-      <p>📍Medan, Indonesia </p>
-      <p>Ilmu Komputer | Computer Science</p>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#tentang">Tentang</a></li>
-        <li><a href="#pendidikan">Pendidikan</a></li>
-        <li><a href="#hobi">Hobi</a></li>
-        <li><a href="#interest">Ketertarikan</a></li>
-        <li><a href="#kontak">Kontak</a></li>
-      </ul>
-    </nav>
+<div class="sidebar">
+  <div class="profile">
+    <img src="Profile.jpg" alt="Foto Profil">
+    <h1>Farizky Aulia Lubis</h1>
+    <p>Mahasiswa | Universitas Negeri Medan</p>
+    <p>📍Medan, Indonesia </p>
+    <p>Ilmu Komputer | Computer Science</p>
   </div>
+
+  <nav>
+    <ul>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#pendidikan">Pendidikan</a></li>
+      <li><a href="#hobi">Hobi</a></li>
+      <li><a href="#interest">Ketertarikan</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hubungi Saya -->
+  <div class="contact-section">
+    <h3>Hubungi Saya</h3>
+    <div class="contact-btn">
+      <a href="mailto:farizkyaulia18@gmail.com">📧 farizkyaulia18@gmail.com</a>
+    </div>
+    <div class="contact-btn">
+      <a href="http://Wa.me/+6281263809669">📞 081263809669</a>
+    </div>
+    <div class="contact-btn">
+      <a href="https://www.instagram.com/farizky_aulia?igsh=MTB6cmg3dXVmZGp0bg==" target="_blank">📷 @farizky_aulia</a>
+    </div>
+  </div>
+</div>
 
   <!-- Main Content -->
   <div class="main-content">
@@ -489,6 +566,7 @@ a:hover {
     </section>
   </div>
 
+  
   <!-- Tombol Scroll ke Atas -->
   <button id="toTopBtn">↑</button>
   <!-- Tombol Dark/Light Mode -->
@@ -498,37 +576,36 @@ a:hover {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav ul li a');
 
-    function onScroll(){
-      const triggerBottom = window.innerHeight * 0.8;
-      let current = "";
+function onScroll(){
+  const triggerMiddle = window.innerHeight / 2; // titik tengah layar
+  let current = "";
 
-      sections.forEach(sec => {
-        const rect = sec.getBoundingClientRect();
-        if(rect.top < triggerBottom && rect.bottom > 150){
-          sec.classList.add('visible');
-          sec.classList.remove('hidden');
-          current = sec.getAttribute("id");
-        } else {
-          sec.classList.remove('visible');
-          sec.classList.add('hidden');
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if(link.getAttribute("href").substring(1) === current){
-          link.classList.add("active");
-        }
-      });
-
-      const toTopBtn = document.getElementById('toTopBtn');
-      if(window.scrollY > 200){
-        toTopBtn.classList.add('show');
-      } else {
-        toTopBtn.classList.remove('show');
-      }
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= triggerMiddle && rect.bottom >= triggerMiddle){
+      sec.classList.add('visible');
+      current = sec.getAttribute("id");
+    } else {
+      sec.classList.remove('visible');
     }
+  });
 
+  // Update navbar
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if(link.getAttribute("href").substring(1) === current){
+      link.classList.add("active");
+    }
+  });
+
+  // Tombol ke atas
+  const toTopBtn = document.getElementById('toTopBtn');
+  if(window.scrollY > 200){
+    toTopBtn.classList.add('show');
+  } else {
+    toTopBtn.classList.remove('show');
+  }
+}
     window.addEventListener('scroll', onScroll);
 
     document.getElementById('toTopBtn').addEventListener('click', () => {
@@ -566,5 +643,3 @@ nextBtn.addEventListener('click', () => showSlide(index + 1));
   </script>
 </body>
 </html>
-
-
